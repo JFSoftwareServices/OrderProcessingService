@@ -6,11 +6,13 @@ import OrderProcess.dto.Order;
 
 import java.sql.SQLException;
 
-
-
 public class OrderBOImpl implements OrderBO {
 
 	private OrderDAO dao;
+
+	public OrderBOImpl(OrderDAO dao) {
+		this.dao = dao;
+	}
 
 	@Override
 	public boolean placeOrder(Order order) throws BOException {
@@ -55,13 +57,4 @@ public class OrderBOImpl implements OrderBO {
 
 		return true;
 	}
-
-	public OrderDAO getDao() {
-		return dao;
-	}
-
-	public void setDao(OrderDAO dao) {
-		this.dao = dao;
-	}
-
 }
