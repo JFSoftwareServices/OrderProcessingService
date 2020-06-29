@@ -50,7 +50,9 @@ class OrderBOImplTest {
         verify(dao).create(order);
     }
 
+
     @Test
+    @SuppressWarnings("unchecked")
     void placeOrder_Should_Throw_BOException() throws SQLException {
         Order order = new Order();
         when(dao.create(any(Order.class))).thenThrow(SQLException.class);
@@ -83,12 +85,14 @@ class OrderBOImplTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     void cancelOrder_ShouldThrowABOExceptionOnRead() throws SQLException {
         when(dao.read(anyInt())).thenThrow(SQLException.class);
         Assertions.assertThrows(BOException.class, () -> bo.cancelOrder(ORDER_ID));
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     void cancelOrder_Should_Throw_A_BOExceptionOnUpdate() throws SQLException {
         Order order = new Order();
         when(dao.read(ORDER_ID)).thenReturn(order);
